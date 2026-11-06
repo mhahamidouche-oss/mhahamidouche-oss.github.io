@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0d1722">
 <title>Analyse discriminante</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -471,7 +471,7 @@ function canonical(C, signRef) {
   const sdw = W.map((r, i) => Math.sqrt(r[i] / dfw));
   V.forEach((v, k) => {
     let s;
-    if (signRef) s = dot(v, signRef[k]); else s = v.reduce((a, x, i) => a + x * sdw[i], 0);
+    if (signRef) s = v.reduce((a, x, i) => a + x * sdw[i] * signRef[k][i], 0); else s = v.reduce((a, x, i) => a + x * sdw[i], 0);
     if (s < 0) for (let i = 0; i < p; i++) v[i] = -v[i];
   });
   const consts = V.map(v => -dot(v, gm));
@@ -743,7 +743,7 @@ function run(ds, o) {
   }
 
   // bootstrap
-  if (o.boot && o.boot.on && o.method !== 'stepwise') out.boot = bootstrap(X, gi, g, p, can, priors, o, out);
+  if (o.boot && o.boot.on && o.method !== 'stepwise') { const bt = bootstrap(X, gi, g, p, can, priors, o, out); if (bt) out.boot = bt; else out.warnings.push('BOOT_FAIL'); }
 
   // données des graphiques
   out.plot = { Z: results.filter(rs => !rs.missing && rs.actual != null && cases[rs.r].selected && !cases[rs.r].missX).map(rs => ({ z: rs.z, k: rs.actual })), cent, priors, sep: !!sep, sepCov: sep };
@@ -855,10 +855,11 @@ function bootstrap(X, gi, g, p, can, priors, o, out) {
   const rnd = MT(o.boot.set ? (+o.boot.seed || 2000000) : (Date.now() & 0x7fffffff));
   const n = X.length, m = can.m;
   const byG = Array.from({ length: g }, () => []); gi.forEach((k, i) => byG[k].push(i));
+  const refStd = can.V.map(v => v.map((c, i) => c * can.sdw[i])); // alignement des signes sur les coefficients standardisés
   const estimates = (Xs, gs) => {
     const C = core(Xs, gs, g, p);
     if (C.nj.some(v => v < 2)) return null;
-    let cn; try { cn = canonical(C, can.V); } catch (e) { return null; }
+    let cn; try { cn = canonical(C, refStd); } catch (e) { return null; }
     if (cn.m < m) return null;
     const Si = inv(C.W.map(r => r.map(x => x / (C.n - g)))); if (!Si) return null;
     const pr = o.priors === 'size' ? C.nj.map(v => v / C.n) : priors;
@@ -877,6 +878,7 @@ function bootstrap(X, gi, g, p, can, priors, o, out) {
   }
   const level = (+o.boot.level || 95) / 100;
   const orig = estimates(X, gi);
+  if (!orig || reps.length < 10) return null;
   const bca = o.boot.bca;
   let jack = null;
   if (bca) { jack = []; for (let i = 0; i < n; i++) { const ii = [...Array(n).keys()].filter(j => j !== i); const e = estimates(ii.map(j => X[j]), ii.map(j => gi[j])); if (e) jack.push(e); } }
@@ -1664,6 +1666,8 @@ function setData(ds, name) {
 }
 function saveDs() { /* aucune donnée conservée d'une session à l'autre */ }
 
+// affichage d'un nombre sans notation scientifique (ex. 2,18e-5 devient 0,0000218)
+function cellNum(x) { let s = String(x); if (/e/i.test(s)) s = x.toFixed(10).replace(/0+$/, '').replace(/\.$/, ''); return s.replace('.', dec()); }
 // ---------- vue Données ----------
 function renderData() {
   const box = $('#view-data');
@@ -1690,7 +1694,7 @@ function renderData() {
     const a = S.dataPage * PAGE, b = Math.min(ds.n, a + PAGE);
     h += `<div class="scroll"><table class="grid"><thead><tr><th>#</th>${ds.vars.map(v => `<th title="${esc(v.label)}">${bdi(v.name)}</th>`).join('')}</tr></thead><tbody>`;
     for (let r = a; r < b; r++) {
-      h += `<tr><th>${r + 1}</th>${ds.vars.map((v, j) => { const x = v.values[r]; const s = v.type === 'num' ? (isFinite(x) ? String(x).replace('.', dec()) : '') : x; return `<td><input data-r="${r}" data-c="${j}" value="${esc(s)}" ${v.type === 'num' ? 'inputmode="decimal"' : ''} dir="ltr"></td>`; }).join('')}</tr>`;
+      h += `<tr><th>${r + 1}</th>${ds.vars.map((v, j) => { const x = v.values[r]; const s = v.type === 'num' ? (isFinite(x) ? cellNum(x) : '') : x; return `<td><input data-r="${r}" data-c="${j}" value="${esc(s)}" ${v.type === 'num' ? 'inputmode="decimal"' : ''} dir="ltr"></td>`; }).join('')}</tr>`;
     }
     h += `</tbody></table></div>`;
     if (pages > 1) h += `<div class="row center pager"><button class="btn small ghost" data-pg="-1" ${S.dataPage ? '' : 'disabled'}>‹</button><span>${t('page')} ${S.dataPage + 1} / ${pages}</span><button class="btn small ghost" data-pg="1" ${S.dataPage < pages - 1 ? '' : 'disabled'}>›</button></div>`;
