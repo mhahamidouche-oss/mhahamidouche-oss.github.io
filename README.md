@@ -1,45 +1,20 @@
-# Analyse discriminante · Discriminant Analysis · التحليل التمييزي
+# Discriminant Analysis
 
-Pr. HAMIDOUCHE M'hamed, Université d'Alger 3 · أ.د. أمحمد حميدوش، جامعة الجزائر 3
+# Analyse discriminante
 
-Lien de l'application · Application link · رابط التطبيق : https://mhahamidouche-oss.github.io
+# التحليل التمييزي
 
----
+Pr. HAMIDOUCHE M'hamed, University of Algiers 3
 
-## Français
+Pr. HAMIDOUCHE M'hamed, Université d'Alger 3
 
-Application d'analyse discriminante pour téléphone, tablette et PC. Elle fonctionne sans Internet une fois installée. Les calculs se font sur l'appareil : aucune donnée n'est envoyée.
+أ.د. أمحمد حميدوش، جامعة الجزائر 3
 
-Langues : français, anglais, arabe. Formats lus : .sav, .xlsx, .xls, .ods, .csv. Export des résultats : Word (.docx) et PDF.
+Application link: https://mhahamidouche-oss.github.io
 
-### Les quatre onglets
+Lien de l'application : https://mhahamidouche-oss.github.io
 
-| Onglet | Contenu |
-|---|---|
-| Données | Ouvrir un fichier ; saisir ses données ; Vue des données et Vue des variables ; télécharger en CSV ou en XLSX |
-| Analyse | La boîte de dialogue de l'analyse discriminante |
-| Résultats | Les tableaux de résultats, l'aide à la lecture et l'export du travail |
-| Aide | Le mode d'emploi |
-
-### Le menu de l'analyse
-
-| Partie | Choix proposés |
-|---|---|
-| Boîte principale | Variable de regroupement (Définir plage : minimum, maximum) ; Variables indépendantes ; Entrer les variables simultanément ou Utiliser la méthode étape par étape ; Variable de filtrage |
-| Statistiques… | Moyennes, ANOVA à 1 facteur, Test de Box ; coefficients de Fisher et non standardisés ; corrélations et covariance intra-groupe, covariance de chaque groupe, covariance totale |
-| Méthode… | Lambda de Wilks ; critères d'entrée et de suppression (valeur de F ou probabilité de F) ; récapitulation des étapes ; test F des distances entre couples |
-| Classifier… | Probabilités a priori (égales ou selon les effectifs) ; matrice de covariance intra-groupe ou groupe par groupe ; résultats par observation, récapitulatif, classification par élimination ; tracés et carte territoriale ; remplacement des valeurs manquantes par la moyenne |
-| Enregistrer… | Groupes d'affectation prévus, scores discriminants, probabilités d'affectation |
-| Bootstrap… | Nombre d'échantillons, valeur de départ, intervalles de confiance (percentile ou BCa), échantillonnage simple ou stratifié |
-| Boutons | OK, Coller (syntaxe), Réinitialiser, Annuler |
-
-### Le menu des résultats
-
-| Partie | Contenu |
-|---|---|
-| Tableaux | Récapitulatif du traitement des observations ; statistiques de groupe ; tests d'égalité des moyennes ; matrices intra-groupes ; test de Box (déterminants log, résultats du test) ; valeurs propres et lambda de Wilks ; coefficients standardisés, matrice de structure, coefficients non standardisés ; fonctions aux barycentres ; statistiques et résultats du classement ; coefficients des fonctions de classement ; étapes de la méthode pas à pas ; tableaux du bootstrap |
-| Outils | Sommaire, syntaxe, aide à la lecture, imprimer, effacer les résultats |
-| Mon travail à rendre | Nom et prénom, puis Exporter en Word ou Exporter en PDF |
+رابط التطبيق : https://mhahamidouche-oss.github.io
 
 ---
 
@@ -47,7 +22,9 @@ Langues : français, anglais, arabe. Formats lus : .sav, .xlsx, .xls, .ods, .csv
 
 Discriminant analysis application for phone, tablet and PC. It works offline once installed. All calculations run on the device: no data is sent.
 
-Languages: French, English, Arabic. Formats read: .sav, .xlsx, .xls, .ods, .csv. Output export: Word (.docx) and PDF.
+It opens SPSS data files (.sav) directly, as well as Excel (.xlsx, .xls), OpenDocument (.ods) and CSV files.
+
+Languages: English, French, Arabic. Output export: Word (.docx) and PDF.
 
 ### The four tabs
 
@@ -80,11 +57,52 @@ Languages: French, English, Arabic. Formats read: .sav, .xlsx, .xls, .ods, .csv.
 
 ---
 
+## Français
+
+Application d'analyse discriminante pour téléphone, tablette et PC. Elle fonctionne sans Internet une fois installée. Les calculs se font sur l'appareil : aucune donnée n'est envoyée.
+
+Elle ouvre directement les fichiers de données SPSS (.sav), ainsi que les fichiers Excel (.xlsx, .xls), OpenDocument (.ods) et CSV.
+
+Langues : anglais, français, arabe. Export des résultats : Word (.docx) et PDF.
+
+### Les quatre onglets
+
+| Onglet | Contenu |
+|---|---|
+| Données | Ouvrir un fichier ; saisir ses données ; Vue des données et Vue des variables ; télécharger en CSV ou en XLSX |
+| Analyse | La boîte de dialogue de l'analyse discriminante |
+| Résultats | Les tableaux de résultats, l'aide à la lecture et l'export du travail |
+| Aide | Le mode d'emploi |
+
+### Le menu de l'analyse
+
+| Partie | Choix proposés |
+|---|---|
+| Boîte principale | Variable de regroupement (Définir plage : minimum, maximum) ; Variables indépendantes ; Entrer les variables simultanément ou Utiliser la méthode étape par étape ; Variable de filtrage |
+| Statistiques… | Moyennes, ANOVA à 1 facteur, Test de Box ; coefficients de Fisher et non standardisés ; corrélations et covariance intra-groupe, covariance de chaque groupe, covariance totale |
+| Méthode… | Lambda de Wilks ; critères d'entrée et de suppression (valeur de F ou probabilité de F) ; récapitulation des étapes ; test F des distances entre couples |
+| Classifier… | Probabilités a priori (égales ou selon les effectifs) ; matrice de covariance intra-groupe ou groupe par groupe ; résultats par observation, récapitulatif, classification par élimination ; tracés et carte territoriale ; remplacement des valeurs manquantes par la moyenne |
+| Enregistrer… | Groupes d'affectation prévus, scores discriminants, probabilités d'affectation |
+| Bootstrap… | Nombre d'échantillons, valeur de départ, intervalles de confiance (percentile ou BCa), échantillonnage simple ou stratifié |
+| Boutons | OK, Coller (syntaxe), Réinitialiser, Annuler |
+
+### Le menu des résultats
+
+| Partie | Contenu |
+|---|---|
+| Tableaux | Récapitulatif du traitement des observations ; statistiques de groupe ; tests d'égalité des moyennes ; matrices intra-groupes ; test de Box (déterminants log, résultats du test) ; valeurs propres et lambda de Wilks ; coefficients standardisés, matrice de structure, coefficients non standardisés ; fonctions aux barycentres ; statistiques et résultats du classement ; coefficients des fonctions de classement ; étapes de la méthode pas à pas ; tableaux du bootstrap |
+| Outils | Sommaire, syntaxe, aide à la lecture, imprimer, effacer les résultats |
+| Mon travail à rendre | Nom et prénom, puis Exporter en Word ou Exporter en PDF |
+
+---
+
 ## العربية
 
 تطبيق للتحليل التمييزي على الهاتف واللوحة والحاسوب. يعمل دون إنترنت بعد تثبيته. تُجرى الحسابات على الجهاز نفسه ولا تُرسل أي بيانات.
 
-اللغات : الفرنسية والإنجليزية والعربية. الصيغ المقروءة : sav. و xlsx. و xls. و ods. و csv. تصدير النتائج : Word (docx.) و PDF.
+يفتح مباشرة ملفات بيانات SPSS ذات الامتداد sav.، وكذلك ملفات Excel (xlsx. و xls.) و OpenDocument (ods.) و CSV.
+
+اللغات : الإنجليزية والفرنسية والعربية. تصدير النتائج : Word (docx.) و PDF.
 
 ### الألسنة الأربعة
 
